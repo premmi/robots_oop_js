@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<script src="ground-robot.js"></script>
+<script src="inherit.js"></script>
+<script src="air-robot.js"></script>
+
+<script type ="text/javascript">
+var APP = {};
+
+APP.robotCommand = function(command) {
+
+    var commands = command.split(" ");
+	var robotType = commands[0];
+	var robot;
+
+	if(robotType === 'ground') {
+
+       robot = new GroundRobot();
+	} else if(robotType === 'air') {
+		robot = new AirRobot();
+	} else {
+		throw "Invalid Robot.";
+	}
+
+	robot.parseCommand(commands[1]);
+
+	return robot;
+}
+
+var robot1 = APP.robotCommand("ground RFFFFLLFFFFRFFFF");
+var robot2 = APP.robotCommand("air URFFFLLLUUUDDD");
+
+console.log(robot1.getDirection());
+console.log(robot1.getPosition());
+
+console.log(robot2.getDirection());
+console.log(robot2.getPosition()); 
+
+</script>   
+
+</head>
+<body>
+
+
+</body>	
+</html>
